@@ -1,11 +1,7 @@
 package org.example.hibernate.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 import org.example.hibernate.model.Cliente;
-import org.example.hibernate.model.Coche;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -84,10 +80,21 @@ public class Dao {
         return objeto == null;
     }
 
+
     public List buscarTodos(Object o) {
         String nombreClase = o.getClass().getSimpleName();
         String consulta = "SELECT e FROM " + nombreClase + " e";
         return entityManager.createQuery(consulta).getResultList();
+    }
+
+    public List<Cliente> clientePorNombre(String nombre) {
+        return entityManager.createQuery("select e from Cliente e where nombre = :nombre").setParameter("nombre", nombre).getResultList();
+
+
+    }
+
+    public void cerrar(){
+        entityManager.close();
     }
 
 

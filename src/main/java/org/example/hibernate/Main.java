@@ -112,15 +112,18 @@ public class Main {
         coches.forEach(dao::insertar);
         averias.forEach(dao::insertar);*/
 
-        Cliente cliente1 = Cliente.builder()
-                .dni(123458)
-                .nombre("Juan")
+//        Cliente cliente1 = Cliente.builder()
+//                .dni(123458)
+//                .nombre("Juan")
+//
+//
+//                .build();
+//
+//
+//        dao.borrar(cliente1);
 
-
-                .build();
-
-
-        dao.borrar(cliente1);
+        List<Cliente> clientes = dao.clientePorNombre("Juan");
+        clientes.forEach(System.out::println);
 
 
 
