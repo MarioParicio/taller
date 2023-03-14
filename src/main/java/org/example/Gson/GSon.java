@@ -8,8 +8,7 @@ import org.example.Gson.model.Cliente;
 import org.example.Gson.model.Coche;
 
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.List;
 
 public class GSon {
@@ -54,6 +53,49 @@ public class GSon {
         clientes.forEach(System.out::println);
         coches.forEach(System.out::println);
 
+
+/*        String jsonAveria = gson.toJson(averias);
+        String jsonCliente = gson.toJson(clientes);
+        String jsonCoche = gson.toJson(coches);
+
+
+        System.out.println(jsonAveria);
+        System.out.println(jsonCliente);
+        System.out.println(jsonCoche);
+
+        try (PrintWriter pwAveria = new PrintWriter("C:\\Users\\mpari\\IdeaProjects\\taller\\data\\AveriaGenerated.json");
+             PrintWriter pwCliente = new PrintWriter("C:\\Users\\mpari\\IdeaProjects\\taller\\data\\ClienteGenerated.json");
+             PrintWriter pwCoche = new PrintWriter("C:\\Users\\mpari\\IdeaProjects\\taller\\data\\CocheGenerated.json")) {
+            pwAveria.println(jsonAveria);
+            pwCliente.println(jsonCliente);
+            pwCoche.println(jsonCoche);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
+
+        String jsonAveria = "[";
+        jsonAveria += gson.toJson(averias);
+        String jsonCliente = gson.toJson(clientes);
+        String jsonCoche = gson.toJson(coches) + "]";
+
+
+
+        System.out.println(jsonAveria);
+        System.out.println(jsonCliente);
+        System.out.println(jsonCoche);
+
+        try (PrintWriter pwAveria = new PrintWriter("C:\\Users\\mpari\\IdeaProjects\\taller\\data\\AveriaGenerated.json"))
+        {
+            pwAveria.println(jsonAveria + "," +  jsonCliente + "," + jsonCoche);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
+
 
 }
